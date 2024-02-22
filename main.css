@@ -7,33 +7,42 @@
     font-family: "Kode Mono", monospace;;
 }
 
-:root{
+:root {
     --mainColor: #004777;
     --mainColorLight: #5767aa;
     --secondaryColor: #DB2839;
-    --textColor: #eee
-
+    --textColor: #eee;
 }
+
+nav ul li{
+    list-style: none;
+    display: inline-flex;
+    justify-content: right;
+}
+
 
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
     height: 80px;
     padding: 0 2rem;
     background-color: var(--mainColor);
     color: var(--textColor);
 }
 
-
-nav a { 
+nav a {
     margin: 0 2rem;
     color: var(--textColor);
     text-decoration: none;
-
 }
 
 header .nav-btn {
+    
+    position: absolute;
+    top: 10px;
+    left: 10px;
     padding: 5px;
     cursor: pointer;
     background: transparent;
@@ -45,47 +54,121 @@ header .nav-btn {
     font-size: 1.8rem;
 }
 
-.navbar {
+.nav-icons {
     display: flex;
-    justify-content: flex-end;
-    
-    padding: 10px;
-    background-color: var(--mainColor) ;
+    gap: 20px;
+    margin: 20px;
 }
 
 .nav-icon {
-    
+    display: flex;
     font-size: 36px;
     color: #00AFB5;
-    margin-left: 40px;
+    
+    margin-left: 20px; /* Adjust margin as needed */
+    position: relative; /* Ensure positioning context for tooltip */
 }
 
-.nav-icons {
+
+/* Projects section */
+.projects .projects {
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5px 0;
+}
+
+.projects .projects-header h1 {
+    margin-bottom: 50px;
+}
+
+.projects .all-projects {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.nav-icon:hover::after {
-    content: attr(data-text);
+.projects .project-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 80%;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.projects .project-info {
+    padding: 30px;
+    flex-basis: 50%;
+    height: 100%;
+    display: flex;
+    height: 600px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    color: white;
+}
+
+.projects .project-info h1 {
+    font-size: 4rem;
+    font-weight: 200;
+}
+
+.projects .project-info h2 {
+    font-size: 1.8rem;
+    font-weight: 200;
+    margin-top: 10px;
+}
+
+.projects .project-info p {
+    color: white;
+}
+
+.projects .project-img {
+    flex-basis: 50%;
+    height: 600px;
+    overflow: hidden;
+    position: relative;
+    
+}
+
+.projects .project-img:after {
+    content: '';
     position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 14px;
-    color: #eee;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    opacity: 0.7;
 }
 
+.projects .project-img img {
+    transition: 0.3s ease transform;
+}
 
+.projects .project-item:hover .project-img img {
+    transform: scale(1.1);
+}
 
+/* End Projects section */
 
-@media only screen and (max-width: 1024px){
+/* Media queries */
+
+@media only screen and (max-width: 700px) {
     header .nav-btn {
         visibility: visible;
         opacity: 1;
     }
-
+    nav ul li{
+        list-style: none;
+        display: block;
+        justify-content: right;
+    }
     header nav {
         position: fixed;
         top: 0;
@@ -93,23 +176,27 @@ header .nav-btn {
         width: 100%;
         height: 100%;
         display: flex;
-        flex-direction: column;
         align-items: center;
+        flex-direction: column;
         justify-content: center;
         gap: 1.5rem;
         background-color: var(--mainColor);
         transition: 1s;
         transform: translateY(-100vh);
-
     }
-    header .responsive_nav {
-        transform: none;   
 
-}   
+    header .responsive_nav {
+        transform: none;
+    }
+
     nav .nav-close-btn {
-        position: absolute;
+        position: fixed;
         top: 2rem;
         right: 2rem;
+        
+    }
+    .nav-btn::after{
+    display: none;
 
     }
 
@@ -117,3 +204,7 @@ header .nav-btn {
         font-size: 1.5rem;
     }
 }
+
+
+
+

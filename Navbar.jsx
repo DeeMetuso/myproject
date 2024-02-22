@@ -1,40 +1,57 @@
-import { useRef } from 'react';
-import { FaBars, FaTimes, FaUser, FaEnvelope, FaCamera, FaCode } from "react-icons/fa"; 
-import "../Styles/main.css"
 
-function Navbar(){
+
+import { useRef, useState } from 'react';
+import { FaUser, FaCode, FaCamera, FaEnvelope, FaTimes, FaBars } from 'react-icons/fa';
+import "../Styles/main.css";
+import { Link } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+
+function Navbar() {
+    const [menuOpen, setMenuOpen] =useState(false)
     const navRef = useRef();
-    const showNavbar = () => {
-        navRef.current.classList.toggle('responsive_nav');
-    }
 
+    const showNavbar = () => {
+        navRef.current.classList.toggle('responsive_nav')
+        
+    }
     return (
         <header>
-            <nav className='navbar' ref={navRef}>
-                <div className='nav-icons'>
-                <FaUser className='nav-icon' data-text='About Me'/>
-                <FaCode className='nav-icon' data-text= 'Projects'/>
-                <FaCamera className='nav-icon' data-text='Photography'/>
-                <FaEnvelope className='nav-icon' data-text='Contact'/>
-
-                </div>
+            <nav ref={navRef}>
                 
-                {/* <a href="/#">About Me</a>
-                <a href="/#">Projects</a>
-                <a href="/#">Photography</a>
-                <a href="/href">Contact</a> */}
-               
-                <button className='nav- btn nav-close-btn' onClick={showNavbar}>
-                    <FaTimes />
-                </button>   
-
+                <ul>
+                    <li>
+                        <Link to="./Pages/About"><FaUser className='nav-icon' /></Link>
+                    </li>
+                    <li>
+                        <Link to="./Pages/Projects"><FaCode className='nav-icon' /></Link>
+                    </li>
+                    <li>
+                        <Link to="./Pages/Photography"><FaCamera className='nav-icon' /></Link>
+                    </li>
+                    <li>
+                        <Link to="./Pages/Contact"><FaEnvelope className='nav-icon' /></Link>
+                    </li>
+                </ul>    
+                    
+                
             </nav>
+            <button className='nav-close-btn' onClick={showNavbar}>
+                <FaBars className='nav-bagga' />
+                <FaTimes className='nav-times' />
+                
+                    
+                </button>
             <button className='nav-btn' onClick={showNavbar}>
-                <FaBars />
+                
+                
             </button>
         </header>
-
     );
 }
 
+
+
 export default Navbar;
+
+
+
